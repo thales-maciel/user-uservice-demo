@@ -1,0 +1,49 @@
+{
+  "name": "node-20-typescript-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "mocha --require ts-node/register ./test/unit/**/*.test.ts --parallel",
+    "test:watch": "npm run test -- -w",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "prepare": "husky install"
+  },
+  "keywords": [
+    "boilerplate",
+    "scaffold",
+    "typescript"
+  ],
+  "engines": {
+    "node": "^20.0.0"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^20.2.4",
+    "@typescript-eslint/eslint-plugin": "^5.59.7",
+    "@typescript-eslint/parser": "^5.59.7",
+    "eslint": "^8.41.0",
+    "eslint-config-prettier": "^8.8.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
+    "mocha": "^10.2.0",
+    "prettier": "^2.8.8",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.tsx": [
+      "eslint --fix"
+    ]
+  }
+}
