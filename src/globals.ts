@@ -1,20 +1,20 @@
 /* eslint-disable canonical/id-match */
 
 /* eslint-disable no-var */
-import _TE, { TaskEither as _TaskEither } from 'fp-ts/TaskEither'
-import _E, { Either as _Either } from 'fp-ts/lib/Either'
-import _O, { Option as _Option } from 'fp-ts/lib/Option'
-import F from 'fp-ts/lib/function'
+import * as _TE from 'fp-ts/TaskEither'
+import * as _E from 'fp-ts/lib/Either'
+import * as _O from 'fp-ts/lib/Option'
+import * as F from 'fp-ts/lib/function'
 
 declare global {
   var E: typeof _E
-  type Either<E, A> = _Either<E, A>
+  type Either<E, A> = _E.Either<E, A>
 
   var O: typeof _O
-  type Option<A> = _Option<A>
+  type Option<A> = _O.Option<A>
 
   var TE: typeof _TE
-  type TaskEither<E, A> = _TaskEither<E, A>
+  type TaskEither<E, A> = _TE.TaskEither<E, A>
 
   var pipe: typeof F.pipe
   var flow: typeof F.flow
