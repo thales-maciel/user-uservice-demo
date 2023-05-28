@@ -71,23 +71,23 @@ export function mkRegisterUser(deps: AppDependencies): RegisterUser {
         return match(e)
           .with(
             { name: 'OperationFailed' },
-            () => ({ name: 'Unexpected' } as const),
+            () => ({ name: 'Unexpected' }) as const,
           )
           .with(
             { name: 'UnexpectedProblem' },
-            () => ({ name: 'Unexpected' } as const),
+            () => ({ name: 'Unexpected' }) as const,
           )
           .with(
             { name: 'UserAlreadyRegistered' },
-            () => ({ name: 'UserAlreadyExists' } as const),
+            () => ({ name: 'UserAlreadyExists' }) as const,
           )
           .with(
             { name: 'UsernameAlreadyExists' },
-            () => ({ name: 'UserAlreadyExists' } as const),
+            () => ({ name: 'UserAlreadyExists' }) as const,
           )
           .with(
             { name: 'ValidationError' },
-            () => ({ name: 'InvalidInput' } as const),
+            () => ({ name: 'InvalidInput' }) as const,
           )
           .exhaustive()
       }),
