@@ -1,4 +1,4 @@
-import { RegisterUserInput } from "../../domain";
+import { RegisterUserInput } from '../../domain'
 
 type UnexpectedProblem = {
   name: 'UnexpectedProblem'
@@ -9,5 +9,7 @@ type UserAlreadyRegistered = {
 }
 
 export type AuthClient = {
-  registerUser: (input: RegisterUserInput) => TaskEither<UnexpectedProblem | UserAlreadyRegistered, null>;
-};
+  registerUser: (
+    input: RegisterUserInput,
+  ) => TaskEither<UnexpectedProblem | UserAlreadyRegistered, null>
+}

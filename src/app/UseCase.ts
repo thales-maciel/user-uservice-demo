@@ -1,1 +1,1 @@
-export type UseCase<I, O> = (input: I) => O;
+export type UseCase<I, O> = (input: I) => O

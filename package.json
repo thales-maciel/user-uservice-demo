@@ -6,17 +6,14 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "test": "mocha --require ts-node/register ./test/**/*.test.ts --parallel",
-    "test:watch": "npm run test -- --watch-files ./src/**/*.ts -w",
-    "lint": "eslint",
-    "lint:fix": "eslint --fix",
+    "test": "mocha --require ts-node/register ./test/**/*.test.ts",
+    "test:arch": "npx depcruise src",
+    "test:watch": "npm run test -- --watch-files ./src/**/*.ts --watch-files ./test/**/*.ts -w",
+    "lint": "npx eslint",
+    "lint:fix": "npx eslint --fix",
+    "format": "npx prettier --write",
     "prepare": "husky install"
   },
-  "keywords": [
-    "boilerplate",
-    "scaffold",
-    "typescript"
-  ],
   "engines": {
     "node": "^20.0.0"
   },
@@ -47,9 +44,6 @@
     "*.ts": [
       "eslint --fix",
       "prettier --write"
-    ],
-    "*.tsx": [
-      "eslint --fix"
     ]
   },
   "dependencies": {

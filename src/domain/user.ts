@@ -4,7 +4,7 @@ type UserIdBrand = {
   readonly UserId: unique symbol
 }
 
-export const userIdCodec = t.brand(
+const userIdCodec = t.brand(
   t.string,
   (value): value is t.Branded<string, UserIdBrand> => isUUID(value),
   'UserId',
@@ -15,34 +15,33 @@ const isUUID = (value: string) =>
     value,
   )
 
-export type UserId = t.TypeOf<typeof userIdCodec>
+type UserId = t.TypeOf<typeof userIdCodec>
 
 type UsernameBrand = {
   readonly Username: unique symbol
 }
 
-export const usernameCodec = t.brand(
+const usernameCodec = t.brand(
   t.string,
   (value): value is t.Branded<string, UsernameBrand> => isValidUsername(value),
   'Username',
 )
 
-const isValidUsername = (value: string) =>
-  /^[A-Za-z][A-Za-z0-9_]{3,24}$/.test(value)
+const isValidUsername = (value: string) => /^[A-Za-z0-9_]{3,24}$/.test(value)
 
-export type Username = t.TypeOf<typeof usernameCodec>
+type Username = t.TypeOf<typeof usernameCodec>
 
 type PasswordBrand = {
   readonly Password: unique symbol
 }
 
-export const passwordCodec = t.brand(
+const passwordCodec = t.brand(
   t.string,
   (value): value is t.Branded<string, PasswordBrand> => isValidPassword(value),
   'Password',
 )
 
-export type Password = t.TypeOf<typeof passwordCodec>
+type Password = t.TypeOf<typeof passwordCodec>
 
 function containsDigit(str: string): boolean {
   return /\d/.test(str)

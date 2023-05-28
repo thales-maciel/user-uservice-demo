@@ -1,6 +1,6 @@
-import { AuthClient } from "./AuthClient"
-import { Logger } from "./Logger"
-import { ProfileRepository, Database } from "./Persistence"
+import { AuthClient } from './AuthClient'
+import { Logger } from './Logger'
+import { Database, ProfileRepository } from './Persistence'
 
 type AppDependencies = {
   logger: Logger
