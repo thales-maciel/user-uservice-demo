@@ -1,12 +1,13 @@
 import { AuthClient } from './AuthClient'
 import { Logger } from './Logger'
-import { Database, ProfileRepository } from './Persistence'
+import { Persistence } from './Persistence'
+import { ProfileRepository } from './ProfileRepository'
 
 type AppDependencies = {
   logger: Logger
   authClient: AuthClient
   profileRepository: ProfileRepository
-  database: Database
+  database: Persistence
 }
 
 export default AppDependencies

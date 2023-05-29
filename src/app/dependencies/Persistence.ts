@@ -1,31 +1,23 @@
-import { RegisterUserInput } from '../../domain'
-
-type UsernameAlreadyExists = {
+export type UsernameAlreadyExists = {
   name: 'UsernameAlreadyExists'
 }
 
-type OperationFailed = {
+export type OperationFailed = {
   name: 'OperationFailed'
 }
 
-export type Database = {
-  getClient: () => TaskEither<OperationFailed, DatabaseClient>
+export type Persistence = {
+  getPersistenceScope: () => TaskEither<OperationFailed, PersistenceScope>
 }
 
-type DatabaseClient = {
-  beginTransaction: () => TaskEither<OperationFailed, null>
-  commitTransaction: () => TaskEither<OperationFailed, null>
-  rollbackTransaction: () => TaskEither<OperationFailed, null>
-  runStatement: <T = unknown>(
-    statement: string,
-    bindings?: string[],
-  ) => TaskEither<OperationFailed, T>
-}
+export type PersistenceOperationHandler = (
+  statement: string,
+  bindings?: string[],
+) => TaskEither<OperationFailed, { rows: [column: string][] }>
 
-export type ProfileRepository = {
-  insertProfile: (
-    client: DatabaseClient,
-  ) => (
-    input: RegisterUserInput,
-  ) => TaskEither<UsernameAlreadyExists | OperationFailed, null>
+export type PersistenceScope = {
+  begin: () => TaskEither<OperationFailed, null>
+  commit: () => TaskEither<OperationFailed, null>
+  rollback: () => TaskEither<OperationFailed, null>
+  getOperationHandler: () => PersistenceOperationHandler
 }

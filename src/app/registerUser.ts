@@ -37,15 +37,17 @@ export function mkRegisterUser(deps: AppDependencies): RegisterUser {
       ),
       TE.chainW((userInput) =>
         pipe(
-          deps.database.getClient(),
+          deps.database.getPersistenceScope(),
           TE.chainW((client) =>
             pipe(
-              client.beginTransaction(),
+              client.begin(),
               TE.chainFirst(() =>
-                deps.profileRepository.insertProfile(client)(userInput),
+                deps.profileRepository.insertProfile(
+                  client.getOperationHandler(),
+                )(userInput),
               ),
               TE.chainFirstW(() => deps.authClient.registerUser(userInput)),
-              TE.chainFirstW(() => client.commitTransaction()),
+              TE.chainFirstW(() => client.commit()),
               TE.tapIO(
                 () => () =>
                   deps.logger.info('User registered successfully', {
@@ -58,7 +60,7 @@ export function mkRegisterUser(deps: AppDependencies): RegisterUser {
               TE.foldW(
                 (e) =>
                   pipe(
-                    client.rollbackTransaction(),
+                    client.rollback(),
                     TE.foldW(TE.left, () => TE.left(e)),
                   ),
                 TE.right,
@@ -71,23 +73,23 @@ export function mkRegisterUser(deps: AppDependencies): RegisterUser {
         return match(e)
           .with(
             { name: 'OperationFailed' },
-            () => ({ name: 'Unexpected' }) as const,
+            () => ({ name: 'Unexpected' } as const),
           )
           .with(
             { name: 'UnexpectedProblem' },
-            () => ({ name: 'Unexpected' }) as const,
+            () => ({ name: 'Unexpected' } as const),
           )
           .with(
             { name: 'UserAlreadyRegistered' },
-            () => ({ name: 'UserAlreadyExists' }) as const,
+            () => ({ name: 'UserAlreadyExists' } as const),
           )
           .with(
             { name: 'UsernameAlreadyExists' },
-            () => ({ name: 'UserAlreadyExists' }) as const,
+            () => ({ name: 'UserAlreadyExists' } as const),
           )
           .with(
             { name: 'ValidationError' },
-            () => ({ name: 'InvalidInput' }) as const,
+            () => ({ name: 'InvalidInput' } as const),
           )
           .exhaustive()
       }),
