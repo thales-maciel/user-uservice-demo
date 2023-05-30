@@ -1,4 +1,4 @@
-import { Logger } from '../../../app/dependencies/Logger'
+import { Logger } from '../../../app/dependencies'
 import { pino } from 'pino'
 
 type LoggerConfigs = {

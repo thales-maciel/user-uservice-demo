@@ -48,13 +48,16 @@
     ]
   },
   "dependencies": {
+    "@fastify/type-provider-json-schema-to-ts": "^2.2.2",
     "axios": "^1.4.0",
     "chai": "^4.3.7",
+    "fastify": "^4.17.0",
     "fp-ts": "^2.16.0",
     "io-ts": "^2.2.20",
     "io-ts-types": "^0.5.19",
     "pg": "^8.11.0",
     "pino": "^8.14.1",
+    "ts-dotenv": "^0.9.1",
     "ts-pattern": "^4.3.0",
     "uuid": "^9.0.0"
   }

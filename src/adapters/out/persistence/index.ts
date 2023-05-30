@@ -1,8 +1,8 @@
-import { Logger } from '../../../app/dependencies/Logger'
 import {
+  Logger,
   Persistence,
   PersistenceScope,
-} from '../../../app/dependencies/Persistence'
+} from '../../../app/dependencies'
 import { Pool, PoolClient } from 'pg'
 
 type DatabaseConfig = {
@@ -40,7 +40,7 @@ const createPersistenceScope = (conn: PoolClient): PersistenceScope => {
         ),
         TE.map(() => null),
       ),
-    getOperationHandler: () => (statement, bindings) =>
+    getOperationHandler: () => (statement: string, bindings) =>
       pipe(
         TE.tryCatch(
           () => conn.query(statement, bindings),

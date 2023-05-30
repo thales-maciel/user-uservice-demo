@@ -1,4 +1,4 @@
 import './globals'
+import { start } from './main'
 
-const a = E.of(1)
-console.log('a:', a)
+void start()

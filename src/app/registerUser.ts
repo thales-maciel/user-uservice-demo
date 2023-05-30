@@ -37,7 +37,7 @@ export function mkRegisterUser(deps: AppDependencies): RegisterUser {
       ),
       TE.chainW((userInput) =>
         pipe(
-          deps.database.getPersistenceScope(),
+          deps.persistence.getPersistenceScope(),
           TE.chainW((client) =>
             pipe(
               client.begin(),

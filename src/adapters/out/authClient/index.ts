@@ -1,5 +1,4 @@
-import { AuthClient } from '../../../app/dependencies/AuthClient'
-import { Logger } from '../../../app/dependencies/Logger'
+import { AuthClient, Logger } from '../../../app/dependencies'
 import { RegisterUserInput } from '../../../domain'
 import axios, { isAxiosError } from 'axios'
 

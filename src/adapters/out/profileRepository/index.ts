@@ -1,6 +1,5 @@
-import { Logger } from '../../../app/dependencies/Logger'
-import { PersistenceOperationHandler } from '../../../app/dependencies/Persistence'
-import { ProfileRepository } from '../../../app/dependencies/ProfileRepository'
+import { Logger, ProfileRepository } from '../../../app/dependencies'
+import { PersistenceOperationHandler } from '../../../app/dependencies'
 import { RegisterUserInput } from '../../../domain'
 
 export const profileRepositoryFactory = (logger: Logger): ProfileRepository => {
